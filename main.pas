@@ -191,7 +191,7 @@ begin
   if Length(FileNames) > 0 then FileName:=FileNames[0];
 
   Image1.Picture.LoadFromFile(FileName);
-  //TODO: upload image file
+
   //Document: https://wiki.lazarus.freepascal.org/Drag_and_Drop_sample#Files
 end;
 

@@ -8,6 +8,7 @@ object FormMain: TFormMain
   ClientHeight = 349
   ClientWidth = 520
   DesignTimePPI = 110
+  LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
