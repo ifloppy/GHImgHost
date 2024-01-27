@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Release"/>
     <Units>
       <Unit>
         <Filename Value="GHImgHost.lpr"/>
@@ -16,8 +16,11 @@
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <CursorPos X="24" Y="17"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="18"/>
+        <CursorPos X="9" Y="53"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -26,8 +29,8 @@
         <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormSettings"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="37"/>
         <CursorPos X="47" Y="63"/>
@@ -40,12 +43,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Common"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="25" Y="13"/>
+        <CursorPos X="15" Y="13"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="15">
+    <JumpHistory HistoryIndex="17">
       <Position>
         <Filename Value="settings.pas"/>
         <Caret Column="14"/>
@@ -108,6 +111,14 @@
       <Position>
         <Filename Value="settings.pas"/>
         <Caret Line="58" Column="15" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="settings.pas"/>
+        <Caret Line="63" Column="47" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="37" Column="43" TopLine="16"/>
       </Position>
     </JumpHistory>
     <RunParams>
