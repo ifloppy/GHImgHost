@@ -34,7 +34,7 @@ procedure ShowSettingsForm();
 var
   SettingsForm: TFormSettings;
 begin
-  SettingsForm := TFormSettings.Create(self);
+  SettingsForm := TFormSettings.Create(nil);
   SettingsForm.ShowModal;
   SettingsForm.Free;
 end;
@@ -50,7 +50,7 @@ end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
 begin
-  TIniFile.Free;
+  Config.Free;
 end;
 
 
