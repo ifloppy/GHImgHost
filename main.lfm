@@ -1,11 +1,72 @@
 object FormMain: TFormMain
   Left = 460
-  Height = 240
+  Height = 349
   Top = 32
-  Width = 320
-  Caption = 'FormMain'
+  Width = 520
+  AllowDropFiles = True
+  Caption = 'GHImgHost - 把Github仓库作为图床'
+  ClientHeight = 349
+  ClientWidth = 520
   DesignTimePPI = 110
-  LCLVersion = '3.99.0.0'
+  ShowInTaskBar = stAlways
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  object btnSettings: TButton
+    Left = 8
+    Height = 29
+    Top = 282
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = '设置'
+    TabOrder = 0
+    OnClick = btnSettingsClick
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 30
+    Top = 319
+    Width = 520
+    Panels = <>
+  end
+  object btnFromClipboard: TButton
+    Left = 104
+    Height = 29
+    Top = 282
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = '剪切板导入'
+    TabOrder = 2
+    OnClick = btnFromClipboardClick
+  end
+  object Image1: TImage
+    Left = 8
+    Height = 266
+    Top = 8
+    Width = 502
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Center = True
+    Proportional = True
+    Stretch = True
+    Transparent = True
+  end
+  object btnUpload: TButton
+    Left = 200
+    Height = 29
+    Top = 282
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = '上传'
+    TabOrder = 3
+    OnClick = btnUploadClick
+  end
+  object Button1: TButton
+    Left = 296
+    Height = 29
+    Top = 282
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = '复制'
+    TabOrder = 4
+  end
 end

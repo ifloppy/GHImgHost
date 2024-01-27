@@ -1,68 +1,99 @@
 object FormSettings: TFormSettings
   Left = 460
-  Height = 221
+  Height = 290
   Top = 32
-  Width = 376
+  Width = 380
   BorderStyle = bsDialog
-  Caption = 'FormSettings'
-  ClientHeight = 221
-  ClientWidth = 376
+  Caption = 'GHImgHost设置'
+  ClientHeight = 290
+  ClientWidth = 380
   DesignTimePPI = 110
-  object inputUserName: TLabeledEdit
-    Left = 8
-    Height = 28
-    Top = 32
-    Width = 360
-    EditLabel.Height = 20
-    EditLabel.Width = 360
-    EditLabel.Caption = '用户名称'
+  ShowInTaskBar = stAlways
+  OnCreate = FormCreate
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 248
+    Top = 0
+    Width = 384
+    ActivePage = TabSheet2
+    TabIndex = 1
     TabOrder = 0
-  end
-  object inputRepoName: TLabeledEdit
-    Left = 8
-    Height = 28
-    Top = 88
-    Width = 360
-    EditLabel.Height = 20
-    EditLabel.Width = 360
-    EditLabel.Caption = '仓库名称'
-    TabOrder = 1
-  end
-  object inputToken: TLabeledEdit
-    Left = 8
-    Height = 28
-    Top = 144
-    Width = 360
-    EditLabel.Height = 20
-    EditLabel.Width = 360
-    EditLabel.Caption = 'Github Token'
-    TabOrder = 2
-  end
-  object btnGetToken: TButton
-    Left = 8
-    Height = 29
-    Top = 184
-    Width = 94
-    Caption = '获取Token'
-    TabOrder = 3
-    OnClick = btnGetTokenClick
-  end
-  object btnTest: TButton
-    Left = 112
-    Height = 29
-    Top = 184
-    Width = 86
-    Caption = '测试连接'
-    TabOrder = 4
-    OnClick = btnTestClick
+    object TabSheet1: TTabSheet
+      Caption = 'Github设置'
+      ClientHeight = 215
+      ClientWidth = 376
+      object inputUserName: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 32
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = '用户名称'
+        TabOrder = 0
+      end
+      object inputRepoName: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 88
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = '仓库名称'
+        TabOrder = 1
+      end
+      object inputToken: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 144
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = 'Github Token'
+        TabOrder = 2
+      end
+      object btnGetToken: TButton
+        Left = 8
+        Height = 29
+        Top = 184
+        Width = 94
+        Caption = '获取Token'
+        TabOrder = 3
+        OnClick = btnGetTokenClick
+      end
+      object btnTest: TButton
+        Left = 112
+        Height = 29
+        Top = 184
+        Width = 86
+        Caption = '测试连接'
+        TabOrder = 4
+        OnClick = btnTestClick
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = '格式化'
+      ClientHeight = 215
+      ClientWidth = 376
+      object inputCopyFormat: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 32
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = '复制图片的格式(文件名称占位符为%s)'
+        TabOrder = 0
+      end
+    end
   end
   object btnOK: TButton
-    Left = 280
+    Left = 288
     Height = 29
-    Top = 184
+    Top = 256
     Width = 86
     Caption = '确认'
-    TabOrder = 5
+    TabOrder = 1
     OnClick = btnOKClick
   end
 end

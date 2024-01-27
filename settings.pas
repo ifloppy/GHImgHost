@@ -5,7 +5,8 @@ unit settings;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, fphttpclient, Common, LCLIntf;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  fphttpclient, Common, LCLIntf, ComCtrls;
 
 type
 
@@ -13,14 +14,19 @@ type
 
   TFormSettings = class(TForm)
     btnGetToken: TButton;
-    btnTest: TButton;
     btnOK: TButton;
-    inputUserName: TLabeledEdit;
+    btnTest: TButton;
     inputRepoName: TLabeledEdit;
     inputToken: TLabeledEdit;
+    inputUserName: TLabeledEdit;
+    inputCopyFormat: TLabeledEdit;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     procedure btnGetTokenClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -43,6 +49,7 @@ var
   Client: TFPHTTPClient;
 begin
   Client:=TFPHTTPClient.Create(nil);
+  Client.AddHeader('Authorization', 'Bearer '+inputToken.Text);
   try
     Client.Get(BaseURL+'/repos/'+inputUserName.Text+'/'+inputRepoName.Text);
   finally
@@ -58,6 +65,14 @@ begin
   Client.Free;
 end;
 
+procedure TFormSettings.FormCreate(Sender: TObject);
+begin
+  inputUserName.Text:=Config.ReadString('Github', 'User', '');
+  inputRepoName.Text:=Config.ReadString('Github', 'Repo', '');
+  inputToken.Text:=Config.ReadString('Github', 'Token', '');
+  inputCopyFormat.Text:=Config.ReadString('Copy', 'Formatter', '%s');
+end;
+
 procedure TFormSettings.btnGetTokenClick(Sender: TObject);
 begin
   OpenURL('https://github.com/settings/tokens');
@@ -68,6 +83,13 @@ begin
   Config.WriteString('Github', 'User', inputUserName.Text);
   Config.WriteString('Github', 'Repo', inputRepoName.Text);
   Config.WriteString('Github', 'Token', inputToken.Text);
+
+  if Pos('%s', inputCopyFormat.Text) = 0 then begin
+    MessageDlg('无效参数', '你需要在复制格式中填写含有%s的文本', mtWarning, [mbOK], 0);
+    Exit;
+  end;
+  Config.WriteString('Copy', 'Formatter', inputCopyFormat.Text);
+
   Close;
 end;
 
