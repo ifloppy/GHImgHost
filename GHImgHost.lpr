@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, settings, Common
+  Forms, main, settings, Common, opensslsockets, openssl
   { you can add units after this }
   {$IfDef WINDOWS}, uMetaDarkStyle, uDarkStyleParams, uDarkStyleSchemes{$EndIf};
 
@@ -24,6 +24,7 @@ begin
   uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
   {$EndIf}
   Application.Initialize;
+  InitSSLInterface;
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormSettings, FormSettings);
   Application.Run;
