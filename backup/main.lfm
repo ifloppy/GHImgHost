@@ -1,9 +1,0 @@
-object Form1: TForm1
-  Left = 460
-  Height = 240
-  Top = 32
-  Width = 320
-  Caption = 'Form1'
-  DesignTimePPI = 110
-  LCLVersion = '3.99.0.0'
-end
