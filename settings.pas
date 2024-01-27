@@ -75,6 +75,7 @@ end;
 
 procedure TFormSettings.btnGetTokenClick(Sender: TObject);
 begin
+  MessageDlg('提示', '在创建Token时，需要启用repo类的权限', mtInformation, [mbOK], 0);
   OpenURL('https://github.com/settings/tokens');
 end;
 
