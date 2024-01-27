@@ -5,6 +5,7 @@ object FormMain: TFormMain
   Width = 320
   Caption = 'FormMain'
   DesignTimePPI = 110
+  LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
 end
