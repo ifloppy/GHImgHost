@@ -1,18 +1,18 @@
 object FormSettings: TFormSettings
   Left = 460
-  Height = 290
+  Height = 343
   Top = 32
   Width = 380
   BorderStyle = bsDialog
   Caption = 'GHImgHost设置'
-  ClientHeight = 290
+  ClientHeight = 343
   ClientWidth = 380
   DesignTimePPI = 110
   ShowInTaskBar = stAlways
   OnCreate = FormCreate
   object PageControl1: TPageControl
     Left = 0
-    Height = 248
+    Height = 304
     Top = 0
     Width = 384
     ActivePage = TabSheet1
@@ -20,7 +20,7 @@ object FormSettings: TFormSettings
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Github设置'
-      ClientHeight = 215
+      ClientHeight = 271
       ClientWidth = 376
       object inputUserName: TLabeledEdit
         Left = 8
@@ -55,7 +55,7 @@ object FormSettings: TFormSettings
       object btnGetToken: TButton
         Left = 8
         Height = 29
-        Top = 184
+        Top = 240
         Width = 94
         Caption = '获取Token'
         TabOrder = 3
@@ -64,16 +64,26 @@ object FormSettings: TFormSettings
       object btnTest: TButton
         Left = 112
         Height = 29
-        Top = 184
+        Top = 240
         Width = 86
         Caption = '测试连接'
         TabOrder = 4
         OnClick = btnTestClick
       end
+      object inputEmail: TLabeledEdit
+        Left = 10
+        Height = 28
+        Top = 200
+        Width = 358
+        EditLabel.Height = 20
+        EditLabel.Width = 358
+        EditLabel.Caption = 'Github账户的邮箱地址'
+        TabOrder = 5
+      end
     end
     object TabSheet2: TTabSheet
       Caption = '格式化'
-      ClientHeight = 215
+      ClientHeight = 271
       ClientWidth = 376
       object inputCopyFormat: TLabeledEdit
         Left = 8
@@ -85,12 +95,46 @@ object FormSettings: TFormSettings
         EditLabel.Caption = '复制图片的格式(文件名称占位符为%s)'
         TabOrder = 0
       end
+      object inputFIleNamePrefix: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 88
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = '保存的文件的名称的前缀'
+        TabOrder = 1
+        TextHint = '可以在此设置文件上传路径，路径的第一个斜杠已给'
+      end
+      object selectIdentStr: TComboBox
+        Left = 8
+        Height = 28
+        Top = 144
+        Width = 360
+        ItemHeight = 20
+        ItemIndex = 0
+        Items.Strings = (
+          'yyyymmddhhmmss'
+          '当前的毫秒时间戳'
+          '随机生成UUID'
+        )
+        Style = csDropDownList
+        TabOrder = 2
+        Text = 'yyyymmddhhmmss'
+      end
+      object Label1: TLabel
+        Left = 8
+        Height = 20
+        Top = 120
+        Width = 154
+        Caption = '文件名后跟随的标识文本'
+      end
     end
   end
   object btnOK: TButton
     Left = 288
     Height = 29
-    Top = 256
+    Top = 312
     Width = 86
     Caption = '确认'
     TabOrder = 1

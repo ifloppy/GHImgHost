@@ -6,20 +6,25 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  fphttpclient, Common, LCLIntf, ComCtrls;
+  fphttpclient, Common, LCLIntf, ComCtrls, ActnList;
 
 type
 
   { TFormSettings }
 
   TFormSettings = class(TForm)
+    ActionList1: TActionList;
     btnGetToken: TButton;
     btnOK: TButton;
     btnTest: TButton;
+    inputEmail: TLabeledEdit;
+    selectIdentStr: TComboBox;
     inputRepoName: TLabeledEdit;
     inputToken: TLabeledEdit;
     inputUserName: TLabeledEdit;
     inputCopyFormat: TLabeledEdit;
+    inputFIleNamePrefix: TLabeledEdit;
+    Label1: TLabel;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -47,11 +52,14 @@ uses main;
 procedure TFormSettings.btnTestClick(Sender: TObject);
 var
   Client: TFPHTTPClient;
+  resp: String;
 begin
   Client:=TFPHTTPClient.Create(nil);
   Client.AddHeader('Authorization', 'Bearer '+inputToken.Text);
+  Client.AddHeader('user-agent', User_Agent);
+  Client.AddHeader('accept', 'application/json');
   try
-    Client.Get(BaseURL+'/repos/'+inputUserName.Text+'/'+inputRepoName.Text);
+    resp:=Client.Get(BaseURL+'/repos/'+inputUserName.Text+'/'+inputRepoName.Text);
   finally
   end;
 
@@ -60,6 +68,7 @@ begin
   end else
   begin
     MessageDlg('发送失败', '无法与Github的API进行通信，请尝试修改配置，错误代码：'+Client.ResponseStatusText, mtError, [mbOK], 0);
+    ShowMessage(resp);
   end;
 
   Client.Free;
@@ -70,7 +79,10 @@ begin
   inputUserName.Text:=Config.ReadString('Github', 'User', '');
   inputRepoName.Text:=Config.ReadString('Github', 'Repo', '');
   inputToken.Text:=Config.ReadString('Github', 'Token', '');
-  inputCopyFormat.Text:=Config.ReadString('Copy', 'Formatter', '%s');
+  inputEmail.Text:=Config.ReadString('Github', 'Email', '');
+  inputCopyFormat.Text:=Config.ReadString('Formatter', 'Copy', '%s');
+  inputFIleNamePrefix.Text:=Config.ReadString('Formatter', 'FileNamePrefix', '');
+  selectIdentStr.ItemIndex:=Config.ReadInteger('Formatter', 'IndentType', 0);
 end;
 
 procedure TFormSettings.btnGetTokenClick(Sender: TObject);
@@ -84,12 +96,16 @@ begin
   Config.WriteString('Github', 'User', inputUserName.Text);
   Config.WriteString('Github', 'Repo', inputRepoName.Text);
   Config.WriteString('Github', 'Token', inputToken.Text);
+  Config.WriteString('Github', 'Email', inputEmail.Text);
 
   if Pos('%s', inputCopyFormat.Text) = 0 then begin
     MessageDlg('无效参数', '你需要在复制格式中填写含有%s的文本', mtWarning, [mbOK], 0);
     Exit;
   end;
-  Config.WriteString('Copy', 'Formatter', inputCopyFormat.Text);
+  Config.WriteString('Formatter', 'Copy', inputCopyFormat.Text);
+
+  Config.WriteString('Formatter', 'FileNamePrefix', inputFIleNamePrefix.Text);
+  Config.WriteInteger('Formatter', 'IndentType', selectIdentStr.ItemIndex);
 
   Close;
 end;
