@@ -23,6 +23,7 @@ type
     procedure btnFromClipboardClick(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnUploadClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
@@ -30,6 +31,7 @@ type
 
   public
     isUploading: Boolean;
+    imgToCopy: string;
   end;
 
 var
@@ -86,6 +88,8 @@ begin
     Exit;
   end;
 
+  isUploading:=true;
+
   StatusBar1.Panels[0].Text:='等待转码图片';
 
   //Prepare PNG
@@ -105,11 +109,11 @@ begin
   StatusBar1.Panels[0].Text:='等待上传图片';
   //Upload
   Client:=TFPHTTPClient.Create(nil);
-  Client.AddHeader('Accept', 'application/json');
+  Client.AddHeader('Accept', 'application/vnd.github+json');
   Client.AddHeader('user-agent', User_Agent);
   Client.AddHeader('authorization', 'Bearer '+Config.ReadString('Github', 'Token', ''));
 
-  UploadData:=TStringStream(Format('{"message":"Uploaded by GHImgHost","committer":{"name":"%s","email":"%s"},"content":"%s"}', [
+  UploadData:=TStringStream.Create(Format('{"message":"Uploaded by GHImgHost","committer":{"name":"%s","email":"%s"},"content":"%s"}', [
   Config.ReadString('Github', 'User', ''),
   Config.ReadString('Github', 'Email', ''),
   Base64OutputStream.AnsiDataString
@@ -121,7 +125,7 @@ begin
   filename:=GeneratePNGFileName() ;
   url:=Format(BaseURL+'/repos/%s/%s/contents/%s', [
   Config.ReadString('Github', 'User', ''),
-  Config.ReadString('Github', 'Repo', '')
+  Config.ReadString('Github', 'Repo', ''),
   filename
   ]);
 
@@ -133,6 +137,7 @@ begin
 
   if Client.ResponseStatusCode = 201 then begin
     StatusBar1.Panels[0].Text:='图片上传成功';
+    imgToCopy:=Format(Config.ReadString('Formatter', 'Copy', ''), [filename]);
   end else begin
     StatusBar1.Panels[0].Text:='图片上传失败：'+Client.ResponseStatusText;
   end;
@@ -140,6 +145,17 @@ begin
 
   UploadData.Free;
   Client.Free;
+  isUploading:=false;
+end;
+
+procedure TFormMain.Button1Click(Sender: TObject);
+begin
+  if isUploading then begin
+    btnFromClipboard.Enabled:=false;
+    Exit;
+  end;
+  Clipboard.AsText:=imgToCopy;
+  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称';
 end;
 
 procedure TFormMain.btnFromClipboardClick(Sender: TObject);

@@ -71,5 +71,6 @@ object FormMain: TFormMain
     Anchors = [akLeft, akBottom]
     Caption = '复制'
     TabOrder = 4
+    OnClick = Button1Click
   end
 end
