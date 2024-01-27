@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, IniFiles, settings;
+  ComCtrls, IniFiles, settings, Clipbrd, LCLIntf, LCLType;
 
 type
 
@@ -86,6 +86,10 @@ begin
     btnFromClipboard.Enabled:=false;
     Exit;
   end;
+
+  if Clipboard.HasFormat(PredefinedClipboardFormat(pcfBitmap)) then
+    Image1.Picture.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap));
+
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
