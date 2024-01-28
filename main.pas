@@ -38,7 +38,7 @@ type
   private
 
   public
-    isUploading: Boolean;
+    isUploading, isSelectedFile: Boolean;
     UploadedFileName: string;
   end;
 
@@ -94,6 +94,11 @@ begin
   ) then begin
     MessageDlg('信息错误', 'Github信息存在漏填，请打开设置界面进行填写并保存', mtError, [mbOK], 0);
     Exit;
+  end;
+
+  if not isSelectedFile then begin
+    StatusBar1.Panels[0].Text:='你还没有选择图片！';
+    exit;
   end;
 
   isUploading:=true;
@@ -183,6 +188,7 @@ begin
 
   if Clipboard.HasFormat(CF_Picture) then begin
     Image1.Picture.LoadFromClipboardFormat(CF_Bitmap);
+    isSelectedFile:=true;
     exit;
   end;
 
@@ -193,6 +199,7 @@ procedure TFormMain.btnClearClick(Sender: TObject);
 begin
   Image1.Picture.Clear;
   UploadedFileName:='';
+  isSelectedFile:=false;
 end;
 
 procedure TFormMain.btnCopy2Click(Sender: TObject);
@@ -243,7 +250,9 @@ end;
 
 procedure TFormMain.Image1Click(Sender: TObject);
 begin
-  if OpenPictureDialog1.Execute then Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+  if OpenPictureDialog1.Execute then begin Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+    isSelectedFile:=true;
+  end;
 end;
 
 
