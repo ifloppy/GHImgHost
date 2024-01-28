@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, IniFiles, settings, Clipbrd, LCLIntf, LCLType, base64, fphttpclient, common;
+  ComCtrls, IniFiles, settings, Clipbrd, LCLIntf, LCLType, ActnList, base64,
+  fphttpclient, common;
 
 type
 
@@ -31,6 +32,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
 
   public
@@ -229,6 +231,14 @@ begin
 
   //Document: https://wiki.lazarus.freepascal.org/Drag_and_Drop_sample#Files
 end;
+
+procedure TFormMain.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if (Key = LCLType.VK_V) and (ssCtrl in Shift) then
+      btnFromClipboardClick(self);
+end;
+
 
 
 
