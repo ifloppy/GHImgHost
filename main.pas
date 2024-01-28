@@ -13,19 +13,21 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    btnCopy2: TButton;
     btnSettings: TButton;
     btnFromClipboard: TButton;
     btnUpload: TButton;
-    btnCopy: TButton;
+    btnCopy1: TButton;
     btnClear: TButton;
     Image1: TImage;
     StatusBar1: TStatusBar;
 
     procedure btnClearClick(Sender: TObject);
+    procedure btnCopy2Click(Sender: TObject);
     procedure btnFromClipboardClick(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnUploadClick(Sender: TObject);
-    procedure btnCopyClick(Sender: TObject);
+    procedure btnCopy1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
@@ -33,7 +35,7 @@ type
 
   public
     isUploading: Boolean;
-    imgToCopy: string;
+    UploadedFileName: string;
   end;
 
 var
@@ -139,7 +141,8 @@ begin
 
   if Client.ResponseStatusCode = 201 then begin
     StatusBar1.Panels[0].Text:='图片上传成功';
-    imgToCopy:=Format(Config.ReadString('Formatter', 'Copy', ''), [filename]);
+    //imgToCopy:=Format(Config.ReadString('Formatter', 'Copy', ''), [filename]);
+    UploadedFileName:=filename;
   end else begin
     StatusBar1.Panels[0].Text:='图片上传失败：'+Client.ResponseStatusText;
     if MessageDlg('Upload failed', '上传失败，是否要展示服务器返回的内容？', mtWarning, mbYesNo, 0) = mrYes then
@@ -152,18 +155,18 @@ begin
   isUploading:=false;
 end;
 
-procedure TFormMain.btnCopyClick(Sender: TObject);
+procedure TFormMain.btnCopy1Click(Sender: TObject);
 begin
   if isUploading then begin
     btnFromClipboard.Enabled:=false;
     Exit;
   end;
-  if imgToCopy.IsEmpty then begin
+  if UploadedFileName.IsEmpty then begin
     StatusBar1.Panels[0].Text:='你还没有上传图片!';
     exit;
   end;
-  Clipboard.AsText:=imgToCopy;
-  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称';
+  Clipboard.AsText:=Format(Config.ReadString('Formatter', 'Copy', '%s'), [UploadedFileName]);
+  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称（1）';
 end;
 
 procedure TFormMain.btnFromClipboardClick(Sender: TObject);
@@ -185,7 +188,21 @@ end;
 procedure TFormMain.btnClearClick(Sender: TObject);
 begin
   Image1.Picture.Clear;
-  imgToCopy:='';
+  UploadedFileName:='';
+end;
+
+procedure TFormMain.btnCopy2Click(Sender: TObject);
+begin
+  if isUploading then begin
+    btnFromClipboard.Enabled:=false;
+    Exit;
+  end;
+  if UploadedFileName.IsEmpty then begin
+    StatusBar1.Panels[0].Text:='你还没有上传图片!';
+    exit;
+  end;
+  Clipboard.AsText:=Format(Config.ReadString('Formatter', 'Copy2', '%s'), [UploadedFileName]);
+  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称（2）';
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -202,9 +219,13 @@ begin
     Exit;
   end;
 
-  if Length(FileNames) > 0 then FileName:=FileNames[0];
+  if Length(FileNames) > 0 then begin
+    FileName:=FileNames[0];
+    Image1.Picture.LoadFromFile(FileName);
 
-  Image1.Picture.LoadFromFile(FileName);
+  end;
+
+
 
   //Document: https://wiki.lazarus.freepascal.org/Drag_and_Drop_sample#Files
 end;

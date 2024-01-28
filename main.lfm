@@ -63,15 +63,15 @@ object FormMain: TFormMain
     TabOrder = 3
     OnClick = btnUploadClick
   end
-  object btnCopy: TButton
+  object btnCopy1: TButton
     Left = 296
     Height = 29
     Top = 326
     Width = 86
     Anchors = [akLeft, akBottom]
-    Caption = '复制'
+    Caption = '复制1'
     TabOrder = 4
-    OnClick = btnCopyClick
+    OnClick = btnCopy1Click
   end
   object btnClear: TButton
     Left = 526
@@ -82,5 +82,15 @@ object FormMain: TFormMain
     Caption = '清除'
     TabOrder = 5
     OnClick = btnClearClick
+  end
+  object btnCopy2: TButton
+    Left = 392
+    Height = 29
+    Top = 326
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = '复制2'
+    TabOrder = 6
+    OnClick = btnCopy2Click
   end
 end

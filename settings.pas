@@ -18,13 +18,14 @@ type
     btnOK: TButton;
     btnTest: TButton;
     btnCancel: TButton;
+    inputCopyFormat2: TLabeledEdit;
     selectCopyFormatterTemplate: TComboBox;
     inputEmail: TLabeledEdit;
     selectIdentStr: TComboBox;
     inputRepoName: TLabeledEdit;
     inputToken: TLabeledEdit;
     inputUserName: TLabeledEdit;
-    inputCopyFormat: TLabeledEdit;
+    inputCopyFormat1: TLabeledEdit;
     inputFIleNamePrefix: TLabeledEdit;
     Label1: TLabel;
     PageControl1: TPageControl;
@@ -84,7 +85,8 @@ begin
   inputRepoName.Text:=Config.ReadString('Github', 'Repo', '');
   inputToken.Text:=Config.ReadString('Github', 'Token', '');
   inputEmail.Text:=Config.ReadString('Github', 'Email', '');
-  inputCopyFormat.Text:=Config.ReadString('Formatter', 'Copy', '%s');
+  inputCopyFormat1.Text:=Config.ReadString('Formatter', 'Copy', '%s');
+  inputCopyFormat2.Text:=Config.ReadString('Formatter', 'Copy2', '%s');
   inputFIleNamePrefix.Text:=Config.ReadString('Formatter', 'FileNamePrefix', '');
   selectIdentStr.ItemIndex:=Config.ReadInteger('Formatter', 'IndentType', 0);
 end;
@@ -92,11 +94,11 @@ end;
 procedure TFormSettings.selectCopyFormatterTemplateChange(Sender: TObject);
 begin
   case selectCopyFormatterTemplate.ItemIndex of
-    0: inputCopyFormat.Text:='https://raw.githubusercontent.com/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/main/%s';
-    1: inputCopyFormat.Text:='https://cdn.jsdelivr.net/gh/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/%s';
+    0: inputCopyFormat1.Text:='https://raw.githubusercontent.com/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/main/%s';
+    1: inputCopyFormat1.Text:='https://cdn.jsdelivr.net/gh/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/%s';
   end;
   selectCopyFormatterTemplate.ItemIndex:=-1;
-  selectCopyFormatterTemplate.Text:='可以在此选择复制格式模板';
+  selectCopyFormatterTemplate.Text:='可以在此选择复制格式模板（1）';
 end;
 
 procedure TFormSettings.btnGetTokenClick(Sender: TObject);
@@ -117,11 +119,12 @@ begin
   Config.WriteString('Github', 'Token', inputToken.Text);
   Config.WriteString('Github', 'Email', inputEmail.Text);
 
-  if Pos('%s', inputCopyFormat.Text) = 0 then begin
+  if Pos('%s', inputCopyFormat1.Text) = 0 then begin
     MessageDlg('无效参数', '你需要在复制格式中填写含有%s的文本', mtWarning, [mbOK], 0);
     Exit;
   end;
-  Config.WriteString('Formatter', 'Copy', inputCopyFormat.Text);
+  Config.WriteString('Formatter', 'Copy', inputCopyFormat1.Text);
+  Config.WriteString('Formatter', 'Copy2', inputCopyFormat2.Text);
 
   Config.WriteString('Formatter', 'FileNamePrefix', inputFIleNamePrefix.Text);
   Config.WriteInteger('Formatter', 'IndentType', selectIdentStr.ItemIndex);

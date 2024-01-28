@@ -85,20 +85,20 @@ object FormSettings: TFormSettings
       Caption = '格式化'
       ClientHeight = 271
       ClientWidth = 376
-      object inputCopyFormat: TLabeledEdit
+      object inputCopyFormat1: TLabeledEdit
         Left = 8
         Height = 28
         Top = 32
         Width = 360
         EditLabel.Height = 20
         EditLabel.Width = 360
-        EditLabel.Caption = '复制图片的格式(文件名称占位符为%s)'
+        EditLabel.Caption = '复制图片的格式（1）(文件名称占位符为%s)'
         TabOrder = 0
       end
       object inputFIleNamePrefix: TLabeledEdit
         Left = 8
         Height = 28
-        Top = 128
+        Top = 176
         Width = 360
         EditLabel.Height = 20
         EditLabel.Width = 360
@@ -109,7 +109,7 @@ object FormSettings: TFormSettings
       object selectIdentStr: TComboBox
         Left = 8
         Height = 28
-        Top = 184
+        Top = 232
         Width = 360
         ItemHeight = 20
         ItemIndex = 0
@@ -125,14 +125,14 @@ object FormSettings: TFormSettings
       object Label1: TLabel
         Left = 8
         Height = 20
-        Top = 160
+        Top = 208
         Width = 154
         Caption = '文件名后跟随的标识文本'
       end
       object selectCopyFormatterTemplate: TComboBox
         Left = 8
         Height = 28
-        Top = 72
+        Top = 120
         Width = 360
         ItemHeight = 20
         Items.Strings = (
@@ -141,8 +141,18 @@ object FormSettings: TFormSettings
         )
         ReadOnly = True
         TabOrder = 3
-        Text = '可以在此选择复制格式模板'
+        Text = '可以在此选择复制格式模板（1）'
         OnChange = selectCopyFormatterTemplateChange
+      end
+      object inputCopyFormat2: TLabeledEdit
+        Left = 8
+        Height = 28
+        Top = 88
+        Width = 360
+        EditLabel.Height = 20
+        EditLabel.Width = 360
+        EditLabel.Caption = '复制图片的格式（2）(文件名称占位符为%s)'
+        TabOrder = 4
       end
     end
   end
