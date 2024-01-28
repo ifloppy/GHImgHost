@@ -86,7 +86,7 @@ begin
   Config.ReadString('Github', 'Token', '').IsEmpty or
   Config.ReadString('Github', 'Email', '').isEmpty
   ) then begin
-    MessageDlg('信息错误', 'Github信息存在漏填', mtError, [mbOK], 0);
+    MessageDlg('信息错误', 'Github信息存在漏填，请打开设置界面进行填写并保存', mtError, [mbOK], 0);
     Exit;
   end;
 
@@ -142,6 +142,8 @@ begin
     imgToCopy:=Format(Config.ReadString('Formatter', 'Copy', ''), [filename]);
   end else begin
     StatusBar1.Panels[0].Text:='图片上传失败：'+Client.ResponseStatusText;
+    if MessageDlg('Upload failed', '上传失败，是否要展示服务器返回的内容？', mtWarning, mbYesNo, 0) = mrYes then
+    ShowMessage(resp);
   end;
 
 
