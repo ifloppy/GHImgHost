@@ -17,6 +17,8 @@ type
     btnGetToken: TButton;
     btnOK: TButton;
     btnTest: TButton;
+    btnCancel: TButton;
+    selectCopyFormatterTemplate: TComboBox;
     inputEmail: TLabeledEdit;
     selectIdentStr: TComboBox;
     inputRepoName: TLabeledEdit;
@@ -28,10 +30,12 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    procedure btnCancelClick(Sender: TObject);
     procedure btnGetTokenClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure selectCopyFormatterTemplateChange(Sender: TObject);
   private
 
   public
@@ -85,10 +89,25 @@ begin
   selectIdentStr.ItemIndex:=Config.ReadInteger('Formatter', 'IndentType', 0);
 end;
 
+procedure TFormSettings.selectCopyFormatterTemplateChange(Sender: TObject);
+begin
+  case selectCopyFormatterTemplate.ItemIndex of
+    0: inputCopyFormat.Text:='https://raw.githubusercontent.com/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/main/%s';
+    1: inputCopyFormat.Text:='https://cdn.jsdelivr.net/gh/'+Config.ReadString('Github', 'User', '%USER%')+'/'+Config.ReadString('Github', 'Repo', '%REPO%')+'/%s';
+  end;
+  selectCopyFormatterTemplate.ItemIndex:=-1;
+  selectCopyFormatterTemplate.Text:='可以在此选择复制格式模板';
+end;
+
 procedure TFormSettings.btnGetTokenClick(Sender: TObject);
 begin
   MessageDlg('提示', '在创建Token时，需要启用repo类的权限', mtInformation, [mbOK], 0);
   OpenURL('https://github.com/settings/tokens');
+end;
+
+procedure TFormSettings.btnCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TFormSettings.btnOKClick(Sender: TObject);

@@ -15,8 +15,8 @@ object FormSettings: TFormSettings
     Height = 304
     Top = 0
     Width = 384
-    ActivePage = TabSheet1
-    TabIndex = 0
+    ActivePage = TabSheet2
+    TabIndex = 1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Github设置'
@@ -98,7 +98,7 @@ object FormSettings: TFormSettings
       object inputFIleNamePrefix: TLabeledEdit
         Left = 8
         Height = 28
-        Top = 88
+        Top = 128
         Width = 360
         EditLabel.Height = 20
         EditLabel.Width = 360
@@ -109,7 +109,7 @@ object FormSettings: TFormSettings
       object selectIdentStr: TComboBox
         Left = 8
         Height = 28
-        Top = 144
+        Top = 184
         Width = 360
         ItemHeight = 20
         ItemIndex = 0
@@ -125,9 +125,24 @@ object FormSettings: TFormSettings
       object Label1: TLabel
         Left = 8
         Height = 20
-        Top = 120
+        Top = 160
         Width = 154
         Caption = '文件名后跟随的标识文本'
+      end
+      object selectCopyFormatterTemplate: TComboBox
+        Left = 8
+        Height = 28
+        Top = 72
+        Width = 360
+        ItemHeight = 20
+        Items.Strings = (
+          'Github Raw'
+          'Github JsDelivr'
+        )
+        ReadOnly = True
+        TabOrder = 3
+        Text = '可以在此选择复制格式模板'
+        OnChange = selectCopyFormatterTemplateChange
       end
     end
   end
@@ -139,5 +154,14 @@ object FormSettings: TFormSettings
     Caption = '确认'
     TabOrder = 1
     OnClick = btnOKClick
+  end
+  object btnCancel: TButton
+    Left = 192
+    Height = 29
+    Top = 312
+    Width = 86
+    Caption = '取消'
+    TabOrder = 2
+    OnClick = btnCancelClick
   end
 end
