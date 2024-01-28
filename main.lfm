@@ -746,6 +746,7 @@ object FormMain: TFormMain
     Proportional = True
     Stretch = True
     Transparent = True
+    OnClick = Image1Click
   end
   object btnUpload: TButton
     Left = 200
@@ -786,5 +787,9 @@ object FormMain: TFormMain
     Caption = '复制2'
     TabOrder = 6
     OnClick = btnCopy2Click
+  end
+  object OpenPictureDialog1: TOpenPictureDialog
+    Left = 72
+    Top = 72
   end
 end

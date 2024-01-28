@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, IniFiles, settings, Clipbrd, LCLIntf, LCLType, ActnList, base64,
-  fphttpclient, common;
+  ComCtrls, IniFiles, settings, Clipbrd, LCLIntf, LCLType, ActnList, ExtDlgs,
+  base64, fphttpclient, common;
 
 type
 
@@ -21,6 +21,7 @@ type
     btnCopy1: TButton;
     btnClear: TButton;
     Image1: TImage;
+    OpenPictureDialog1: TOpenPictureDialog;
     StatusBar1: TStatusBar;
 
     procedure btnClearClick(Sender: TObject);
@@ -33,6 +34,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Image1Click(Sender: TObject);
   private
 
   public
@@ -237,6 +239,11 @@ procedure TFormMain.FormKeyDown(Sender: TObject; var Key: Word;
 begin
     if (Key = LCLType.VK_V) and (ssCtrl in Shift) then
       btnFromClipboardClick(self);
+end;
+
+procedure TFormMain.Image1Click(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
 end;
 
 
