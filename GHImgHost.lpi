@@ -61,7 +61,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="target\$(TargetCPU)-$(TargetOS)\GHImgHost"/>
+            <Filename Value="target\release\$(TargetCPU)-$(TargetOS)\GHImgHost"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -69,6 +69,7 @@
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
+            <RelocatableUnit Value="True"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -77,6 +78,7 @@
             <Debugging>
               <GenerateDebugInfo Value="False"/>
               <RunWithoutDebug Value="True"/>
+              <StripSymbols Value="True"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
