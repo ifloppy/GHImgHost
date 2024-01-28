@@ -8,7 +8,6 @@ object FormMain: TFormMain
   ClientHeight = 349
   ClientWidth = 520
   DesignTimePPI = 110
-  LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
@@ -64,7 +63,7 @@ object FormMain: TFormMain
     TabOrder = 3
     OnClick = btnUploadClick
   end
-  object Button1: TButton
+  object btnCopy: TButton
     Left = 296
     Height = 29
     Top = 282
@@ -72,6 +71,15 @@ object FormMain: TFormMain
     Anchors = [akLeft, akBottom]
     Caption = '复制'
     TabOrder = 4
-    OnClick = Button1Click
+    OnClick = btnCopyClick
+  end
+  object btnClear: TButton
+    Left = 424
+    Height = 29
+    Top = 280
+    Width = 86
+    Caption = '清除'
+    TabOrder = 5
+    OnClick = btnClearClick
   end
 end

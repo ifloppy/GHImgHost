@@ -16,14 +16,16 @@ type
     btnSettings: TButton;
     btnFromClipboard: TButton;
     btnUpload: TButton;
-    Button1: TButton;
+    btnCopy: TButton;
+    btnClear: TButton;
     Image1: TImage;
     StatusBar1: TStatusBar;
 
+    procedure btnClearClick(Sender: TObject);
     procedure btnFromClipboardClick(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnUploadClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnCopyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
@@ -148,11 +150,15 @@ begin
   isUploading:=false;
 end;
 
-procedure TFormMain.Button1Click(Sender: TObject);
+procedure TFormMain.btnCopyClick(Sender: TObject);
 begin
   if isUploading then begin
     btnFromClipboard.Enabled:=false;
     Exit;
+  end;
+  if imgToCopy.IsEmpty then begin
+    StatusBar1.Panels[0].Text:='你还没有上传图片!';
+    exit;
   end;
   Clipboard.AsText:=imgToCopy;
   StatusBar1.Panels[0].Text:='已复制格式化后的图片名称';
@@ -172,6 +178,12 @@ begin
   end;
 
   StatusBar1.Panels[0].Text:='剪切板中没有找到图片';
+end;
+
+procedure TFormMain.btnClearClick(Sender: TObject);
+begin
+  Image1.Picture.Clear;
+  imgToCopy:='';
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
