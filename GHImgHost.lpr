@@ -23,6 +23,7 @@ begin
   PreferredAppMode:=pamAllowDark;
   uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
   {$EndIf}
+  Application.Scaled := True;
   Application.Initialize;
   InitSSLInterface;
   Application.CreateForm(TFormMain, FormMain);

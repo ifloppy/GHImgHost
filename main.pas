@@ -129,7 +129,7 @@ begin
   UploadData:=TStringStream.Create(Format('{"message":"Uploaded by GHImgHost","committer":{"name":"%s","email":"%s"},"content":"%s"}', [
   Config.ReadString('Github', 'User', ''),
   Config.ReadString('Github', 'Email', ''),
-  Base64OutputStream.AnsiDataString
+  Base64OutputStream.ReadAnsiString
   ]));
   Base64OutputStream.Free;
 

@@ -46,7 +46,7 @@ begin
     end;
     1: begin
       ts := DateTimeToTimeStamp(Now);
-      Result := Prefix + IntToStr(TimeStampToMSecs(ts)) + '.png';
+      Result := Prefix + FloatToStr(TimeStampToMSecs(ts)) + '.png';
     end;
     2: begin
       CreateGUID(guid);

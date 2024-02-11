@@ -1,23 +1,22 @@
 object FormMain: TFormMain
   Left = 460
-  Height = 393
+  Height = 398
   Top = 32
-  Width = 622
+  Width = 602
   AllowDropFiles = True
   Caption = 'GHImgHost - 把Github仓库作为图床'
-  ClientHeight = 393
-  ClientWidth = 622
-  DesignTimePPI = 110
+  ClientHeight = 398
+  ClientWidth = 602
   KeyPreview = True
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
   object btnSettings: TButton
-    Left = 8
-    Height = 29
-    Top = 326
-    Width = 86
+    Left = 7
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akLeft, akBottom]
     Caption = '设置'
     TabOrder = 0
@@ -25,34 +24,35 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 30
-    Top = 363
-    Width = 622
+    Height = 22
+    Top = 376
+    Width = 602
     Panels = <    
       item
-        Width = 500
+        Width = 436
       end>
     SimplePanel = False
   end
   object btnFromClipboard: TButton
-    Left = 104
-    Height = 29
-    Top = 326
-    Width = 86
+    Left = 91
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akLeft, akBottom]
     Caption = '剪切板导入'
     TabOrder = 2
     OnClick = btnFromClipboardClick
   end
   object Image1: TImage
-    Left = 8
-    Height = 310
-    Top = 8
-    Width = 604
+    Left = 16
+    Height = 312
+    Top = 16
+    Width = 570
     Anchors = [akTop, akLeft, akRight, akBottom]
     Center = True
     KeepOriginXWhenClipped = True
     KeepOriginYWhenClipped = True
+    OnClick = Image1Click
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963DE55000089504E47
       0D0A1A0A0000000D4948445200000200000002000806000000F478D4FA000000
@@ -746,50 +746,49 @@ object FormMain: TFormMain
     Proportional = True
     Stretch = True
     Transparent = True
-    OnClick = Image1Click
   end
   object btnUpload: TButton
-    Left = 200
-    Height = 29
-    Top = 326
-    Width = 86
+    Left = 175
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akLeft, akBottom]
     Caption = '上传'
     TabOrder = 3
     OnClick = btnUploadClick
   end
   object btnCopy1: TButton
-    Left = 296
-    Height = 29
-    Top = 326
-    Width = 86
+    Left = 258
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akLeft, akBottom]
     Caption = '复制1'
     TabOrder = 4
     OnClick = btnCopy1Click
   end
   object btnClear: TButton
-    Left = 526
-    Height = 29
-    Top = 324
-    Width = 86
+    Left = 512
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akRight, akBottom]
     Caption = '清除'
     TabOrder = 5
     OnClick = btnClearClick
   end
   object btnCopy2: TButton
-    Left = 392
-    Height = 29
-    Top = 326
-    Width = 86
+    Left = 342
+    Height = 25
+    Top = 340
+    Width = 75
     Anchors = [akLeft, akBottom]
     Caption = '复制2'
     TabOrder = 6
     OnClick = btnCopy2Click
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 72
-    Top = 72
+    Left = 63
+    Top = 63
   end
 end
