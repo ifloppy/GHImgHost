@@ -12,6 +12,7 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
+  LCLVersion = '3.0.0.3'
   object btnSettings: TButton
     Left = 7
     Height = 25

@@ -79,7 +79,7 @@ var
   PNGStream: TStream;
   Client: TFPHTTPClient;
   UploadData: TStringStream;
-  resp, url, filename: string;
+  resp, url, filename, processed: string;
 begin
   if isUploading then begin
     btnUpload.Enabled:=false;
@@ -126,10 +126,11 @@ begin
   Client.AddHeader('user-agent', User_Agent);
   Client.AddHeader('authorization', 'Bearer '+Config.ReadString('Github', 'Token', ''));
 
+  processed := TStringStream(Base64OutputStream).DataString;
   UploadData:=TStringStream.Create(Format('{"message":"Uploaded by GHImgHost","committer":{"name":"%s","email":"%s"},"content":"%s"}', [
   Config.ReadString('Github', 'User', ''),
   Config.ReadString('Github', 'Email', ''),
-  Base64OutputStream.ReadAnsiString
+  processed
   ]));
   Base64OutputStream.Free;
 

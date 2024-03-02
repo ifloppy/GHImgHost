@@ -19,7 +19,7 @@ uses
 begin
   {$IfDef WINDOWS}
   RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
+  Application.Scaled := True;
   PreferredAppMode:=pamAllowDark;
   uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
   {$EndIf}

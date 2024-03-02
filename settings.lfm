@@ -1,117 +1,117 @@
 object FormSettings: TFormSettings
   Left = 460
-  Height = 343
+  Height = 347
   Top = 32
-  Width = 380
+  Width = 370
   BorderStyle = bsDialog
   Caption = 'GHImgHost设置'
-  ClientHeight = 343
-  ClientWidth = 380
-  DesignTimePPI = 110
+  ClientHeight = 347
+  ClientWidth = 370
   ShowInTaskBar = stAlways
   OnCreate = FormCreate
   object PageControl1: TPageControl
     Left = 0
     Height = 304
     Top = 0
-    Width = 384
+    Width = 370
     ActivePage = TabSheet2
     TabIndex = 1
     TabOrder = 0
+    OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Github设置'
-      ClientHeight = 271
-      ClientWidth = 376
+      ClientHeight = 274
+      ClientWidth = 362
       object inputUserName: TLabeledEdit
-        Left = 8
-        Height = 28
-        Top = 32
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Left = 7
+        Height = 25
+        Top = 28
+        Width = 314
+        EditLabel.Height = 17
+        EditLabel.Width = 314
         EditLabel.Caption = '用户名称'
         TabOrder = 0
       end
       object inputRepoName: TLabeledEdit
         Left = 8
-        Height = 28
-        Top = 88
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Height = 25
+        Top = 80
+        Width = 314
+        EditLabel.Height = 17
+        EditLabel.Width = 314
         EditLabel.Caption = '仓库名称'
         TabOrder = 1
       end
       object inputToken: TLabeledEdit
-        Left = 8
-        Height = 28
-        Top = 144
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Left = 7
+        Height = 25
+        Top = 136
+        Width = 314
+        EditLabel.Height = 17
+        EditLabel.Width = 314
         EditLabel.Caption = 'Github Token'
         TabOrder = 2
       end
       object btnGetToken: TButton
         Left = 8
-        Height = 29
-        Top = 240
-        Width = 94
+        Height = 25
+        Top = 232
+        Width = 82
         Caption = '获取Token'
         TabOrder = 3
         OnClick = btnGetTokenClick
       end
       object btnTest: TButton
-        Left = 112
-        Height = 29
-        Top = 240
-        Width = 86
+        Left = 105
+        Height = 25
+        Top = 232
+        Width = 75
         Caption = '测试连接'
         TabOrder = 4
         OnClick = btnTestClick
       end
       object inputEmail: TLabeledEdit
-        Left = 10
-        Height = 28
-        Top = 200
-        Width = 358
-        EditLabel.Height = 20
-        EditLabel.Width = 358
+        Left = 8
+        Height = 25
+        Top = 192
+        Width = 312
+        EditLabel.Height = 17
+        EditLabel.Width = 312
         EditLabel.Caption = 'Github账户的邮箱地址'
         TabOrder = 5
       end
     end
     object TabSheet2: TTabSheet
       Caption = '格式化'
-      ClientHeight = 271
-      ClientWidth = 376
+      ClientHeight = 274
+      ClientWidth = 362
       object inputCopyFormat1: TLabeledEdit
-        Left = 8
-        Height = 28
-        Top = 32
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Left = 7
+        Height = 25
+        Top = 28
+        Width = 345
+        EditLabel.Height = 17
+        EditLabel.Width = 345
         EditLabel.Caption = '复制图片的格式（1）(文件名称占位符为%s)'
         TabOrder = 0
       end
       object inputFIleNamePrefix: TLabeledEdit
-        Left = 8
-        Height = 28
+        Left = 7
+        Height = 25
         Top = 176
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Width = 346
+        EditLabel.Height = 17
+        EditLabel.Width = 346
         EditLabel.Caption = '保存的文件的名称的前缀'
         TabOrder = 1
         TextHint = '可以在此设置文件上传路径，路径的第一个斜杠已给'
       end
       object selectIdentStr: TComboBox
-        Left = 8
-        Height = 28
-        Top = 232
-        Width = 360
-        ItemHeight = 20
+        Left = 7
+        Height = 25
+        Top = 240
+        Width = 346
+        ItemHeight = 17
         ItemIndex = 0
         Items.Strings = (
           'yyyymmddhhmmss'
@@ -123,18 +123,18 @@ object FormSettings: TFormSettings
         Text = 'yyyymmddhhmmss'
       end
       object Label1: TLabel
-        Left = 8
-        Height = 20
-        Top = 208
-        Width = 154
+        Left = 7
+        Height = 17
+        Top = 216
+        Width = 132
         Caption = '文件名后跟随的标识文本'
       end
       object selectCopyFormatterTemplate: TComboBox
-        Left = 8
-        Height = 28
-        Top = 120
-        Width = 360
-        ItemHeight = 20
+        Left = 7
+        Height = 25
+        Top = 116
+        Width = 346
+        ItemHeight = 17
         Items.Strings = (
           'Github Raw'
           'Github JsDelivr'
@@ -145,31 +145,31 @@ object FormSettings: TFormSettings
         OnChange = selectCopyFormatterTemplateChange
       end
       object inputCopyFormat2: TLabeledEdit
-        Left = 8
-        Height = 28
-        Top = 88
-        Width = 360
-        EditLabel.Height = 20
-        EditLabel.Width = 360
+        Left = 7
+        Height = 25
+        Top = 80
+        Width = 346
+        EditLabel.Height = 17
+        EditLabel.Width = 346
         EditLabel.Caption = '复制图片的格式（2）(文件名称占位符为%s)'
         TabOrder = 4
       end
     end
   end
   object btnOK: TButton
-    Left = 288
-    Height = 29
+    Left = 283
+    Height = 25
     Top = 312
-    Width = 86
+    Width = 75
     Caption = '确认'
     TabOrder = 1
     OnClick = btnOKClick
   end
   object btnCancel: TButton
     Left = 192
-    Height = 29
+    Height = 25
     Top = 312
-    Width = 86
+    Width = 75
     Caption = '取消'
     TabOrder = 2
     OnClick = btnCancelClick

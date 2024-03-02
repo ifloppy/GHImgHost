@@ -36,6 +36,7 @@ type
     procedure btnOKClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
     procedure selectCopyFormatterTemplateChange(Sender: TObject);
   private
 
@@ -90,6 +91,7 @@ begin
   inputFIleNamePrefix.Text:=Config.ReadString('Formatter', 'FileNamePrefix', '');
   selectIdentStr.ItemIndex:=Config.ReadInteger('Formatter', 'IndentType', 0);
 end;
+
 
 procedure TFormSettings.selectCopyFormatterTemplateChange(Sender: TObject);
 begin
