@@ -99,6 +99,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="weblaz"/>
+      </Item>
+      <Item>
         <PackageName Value="MetaDarkStyle"/>
       </Item>
       <Item>

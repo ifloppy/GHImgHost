@@ -7,8 +7,9 @@ object FormSettings: TFormSettings
   Caption = 'GHImgHost设置'
   ClientHeight = 347
   ClientWidth = 370
-  ShowInTaskBar = stAlways
   OnCreate = FormCreate
+  ShowInTaskBar = stAlways
+  LCLVersion = '3.2.0.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 304
@@ -17,7 +18,6 @@ object FormSettings: TFormSettings
     ActivePage = TabSheet2
     TabIndex = 1
     TabOrder = 0
-    OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = 'Github设置'
       ClientHeight = 274

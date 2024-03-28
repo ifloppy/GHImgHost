@@ -11,6 +11,21 @@ const
   BaseURL = 'https://api.github.com';
   User_Agent = 'Image Client DEV';
 
+resourcestring
+  INFO_ERR = '信息错误';
+  INFO_ERR_DETAIL = 'Github信息存在漏填，请打开设置界面进行填写并保存';
+
+  NO_CHOSEN_PIC = '你还没有选择图片！';
+  WAITING_ENCODING_PIC = '等待转码图片';
+  WAITING_UPLOADING_PIC = '等待上传图片';
+  UPLOADING_PIC = '正在上传图片';
+  SUCCESS_UPLOADING_PIC = '图片上传成功';
+  FAILED_UPLOADING_PIC = '图片上传失败：';
+  FAILED_UPLOADING_IF_DISPLAY_DETAIL = '上传失败，是否要展示服务器返回的内容？';
+  NO_UPLOADED_PIC = '你还没有上传图片!';
+
+  COPIED_FORMATTED_PIC = '已复制格式化后的图片名称';
+
 function GeneratePNGFileName(): string;
 
 implementation

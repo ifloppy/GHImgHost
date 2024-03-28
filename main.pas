@@ -92,18 +92,18 @@ begin
   Config.ReadString('Github', 'Token', '').IsEmpty or
   Config.ReadString('Github', 'Email', '').isEmpty
   ) then begin
-    MessageDlg('信息错误', 'Github信息存在漏填，请打开设置界面进行填写并保存', mtError, [mbOK], 0);
+    MessageDlg(INFO_ERR, INFO_ERR_DETAIL, mtError, [mbOK], 0);
     Exit;
   end;
 
   if not isSelectedFile then begin
-    StatusBar1.Panels[0].Text:='你还没有选择图片！';
+    StatusBar1.Panels[0].Text:=NO_CHOSEN_PIC;
     exit;
   end;
 
   isUploading:=true;
 
-  StatusBar1.Panels[0].Text:='等待转码图片';
+  StatusBar1.Panels[0].Text:=WAITING_ENCODING_PIC;
 
   //Prepare PNG
   outputPNG:=Image1.Picture.PNG;
@@ -119,7 +119,7 @@ begin
   PNGStream.Free;
   Encoder.Free;
 
-  StatusBar1.Panels[0].Text:='等待上传图片';
+  StatusBar1.Panels[0].Text:=WAITING_UPLOADING_PIC;
   //Upload
   Client:=TFPHTTPClient.Create(nil);
   Client.AddHeader('Accept', 'application/vnd.github+json');
@@ -143,19 +143,19 @@ begin
   filename
   ]);
 
-  StatusBar1.Panels[0].Text:='正在上传图片';
+  StatusBar1.Panels[0].Text:=UPLOADING_PIC;
   try
     resp:=Client.Put(url);
   finally
   end;
 
   if Client.ResponseStatusCode = 201 then begin
-    StatusBar1.Panels[0].Text:='图片上传成功';
+    StatusBar1.Panels[0].Text:=SUCCESS_UPLOADING_PIC;
     //imgToCopy:=Format(Config.ReadString('Formatter', 'Copy', ''), [filename]);
     UploadedFileName:=filename;
   end else begin
-    StatusBar1.Panels[0].Text:='图片上传失败：'+Client.ResponseStatusText;
-    if MessageDlg('Upload failed', '上传失败，是否要展示服务器返回的内容？', mtWarning, mbYesNo, 0) = mrYes then
+    StatusBar1.Panels[0].Text:=FAILED_UPLOADING_PIC+Client.ResponseStatusText;
+    if MessageDlg('Upload failed', FAILED_UPLOADING_IF_DISPLAY_DETAIL, mtWarning, mbYesNo, 0) = mrYes then
     ShowMessage(resp);
   end;
 
@@ -172,11 +172,11 @@ begin
     Exit;
   end;
   if UploadedFileName.IsEmpty then begin
-    StatusBar1.Panels[0].Text:='你还没有上传图片!';
+    StatusBar1.Panels[0].Text:=NO_UPLOADED_PIC;
     exit;
   end;
   Clipboard.AsText:=Format(Config.ReadString('Formatter', 'Copy', '%s'), [UploadedFileName]);
-  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称（1）';
+  StatusBar1.Panels[0].Text:=COPIED_FORMATTED_PIC+'（1）';
 end;
 
 procedure TFormMain.btnFromClipboardClick(Sender: TObject);
@@ -193,7 +193,7 @@ begin
     exit;
   end;
 
-  StatusBar1.Panels[0].Text:='剪切板中没有找到图片';
+  StatusBar1.Panels[0].Text:=NO_UPLOADED_PIC;
 end;
 
 procedure TFormMain.btnClearClick(Sender: TObject);
@@ -210,11 +210,11 @@ begin
     Exit;
   end;
   if UploadedFileName.IsEmpty then begin
-    StatusBar1.Panels[0].Text:='你还没有上传图片!';
+    StatusBar1.Panels[0].Text:=NO_UPLOADED_PIC;
     exit;
   end;
   Clipboard.AsText:=Format(Config.ReadString('Formatter', 'Copy2', '%s'), [UploadedFileName]);
-  StatusBar1.Panels[0].Text:='已复制格式化后的图片名称（2）';
+  StatusBar1.Panels[0].Text:=COPIED_FORMATTED_PIC+'（2）';
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);

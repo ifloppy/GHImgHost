@@ -36,7 +36,6 @@ type
     procedure btnOKClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure PageControl1Change(Sender: TObject);
     procedure selectCopyFormatterTemplateChange(Sender: TObject);
   private
 

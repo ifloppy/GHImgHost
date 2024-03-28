@@ -8,11 +8,11 @@ object FormMain: TFormMain
   ClientHeight = 398
   ClientWidth = 602
   KeyPreview = True
+  LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
-  LCLVersion = '3.0.0.3'
   object btnSettings: TButton
     Left = 7
     Height = 25
@@ -53,7 +53,6 @@ object FormMain: TFormMain
     Center = True
     KeepOriginXWhenClipped = True
     KeepOriginYWhenClipped = True
-    OnClick = Image1Click
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963DE55000089504E47
       0D0A1A0A0000000D4948445200000200000002000806000000F478D4FA000000
@@ -747,6 +746,7 @@ object FormMain: TFormMain
     Proportional = True
     Stretch = True
     Transparent = True
+    OnClick = Image1Click
   end
   object btnUpload: TButton
     Left = 175
